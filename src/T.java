@@ -13,8 +13,7 @@ class T extends TetrisPiece
 
   T(Tetris tetris)
   {
-    super();
-
+    super(tetris);
     this.tetris = tetris;
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));
