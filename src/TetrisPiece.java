@@ -233,6 +233,8 @@ public abstract class TetrisPiece extends Actor {
                 break;
             a.move();
         }
+        String word = toString();
+        System.out.println(word);
     }
 
     // Override Actor.removeSelf()

@@ -5,7 +5,7 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class S extends Actor
+class S extends TetrisPiece
 {
   private final int blockId = 4;
   private Location[][] r = new Location[4][4];
@@ -13,7 +13,7 @@ class S extends Actor
 
   S(Tetris tetris)
   {
-    super();
+    super(tetris);
     this.tetris = tetris;
 
     // rotId 0
