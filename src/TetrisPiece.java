@@ -17,13 +17,8 @@ public abstract class TetrisPiece extends Actor {
         this.tetris = tetris;
     }
 
-    public String toString() {
-        return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
-    }
-
-
     private boolean isStarting = true;
-    private int rotId = 0;
+    protected int rotId = 0;
     private int nb;
     protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
     private Actor nextTetrisBlock = null;
@@ -246,5 +241,9 @@ public abstract class TetrisPiece extends Actor {
         super.removeSelf();
         for (TetroBlock a : blocks)
             a.removeSelf();
+    }
+
+    public int getRotId(){
+        return this.rotId;
     }
 }
