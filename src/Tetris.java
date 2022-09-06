@@ -102,8 +102,8 @@ public class Tetris extends JFrame implements GGActListener {
                 if (isAuto) {
                     ((I) t).setAutoBlockMove(currentBlockMove);
                 }
-
                 I previewI = new I(this);
+                //I[rnd] I = new pieceList[rnd](this);
                 previewI.display(gameGrid2, new Location(2, 1));
                 blockPreview = previewI;
                 break;
