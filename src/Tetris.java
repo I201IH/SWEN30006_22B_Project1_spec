@@ -21,6 +21,8 @@ public class Tetris extends JFrame implements GGActListener {
 
     private boolean isAuto = false;
 
+    private String difficulty = null;
+
     private int seed = 30006;
     // For testing mode, the block will be moved automatically based on the blockActions.
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
@@ -34,6 +36,7 @@ public class Tetris extends JFrame implements GGActListener {
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
         String blockActionProperty = properties.getProperty("autoBlockActions", "");
         blockActions = blockActionProperty.split(",");
+        difficulty = properties.getProperty("difficulty", "easy");
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -74,7 +77,25 @@ public class Tetris extends JFrame implements GGActListener {
 
         blockActionIndex++;
         Actor t = null;
-        int rnd = random.nextInt(7);
+        int rnd;
+
+        if (difficulty.equals("easy")){
+            rnd = random.nextInt(7);
+        }
+        else {
+            rnd = random.nextInt(10);
+        }
+        System.out.println(difficulty);
+
+        J j = new J(this);
+
+        /*
+        Actor pieceList[] = [new I(this), new J(this), new L(this), new O(this), new S(this),
+                new T(this), new Z(this), new P(this), new Plus(this), new Q(this)];
+
+         */
+
+
         switch (rnd) {
             case 0:
                 t = new I(this);
@@ -140,6 +161,33 @@ public class Tetris extends JFrame implements GGActListener {
                 previewZ.display(gameGrid2, new Location(2, 1));
                 blockPreview = previewZ;
                 break;
+            case 7:
+                t = new P(this);
+                if (isAuto) {
+                    ((P) t).setAutoBlockMove(currentBlockMove);
+                }
+                P previewP = new P(this);
+                previewP.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewP;
+                break;
+            case 8:
+                t = new Plus(this);
+                if (isAuto) {
+                    ((Plus) t).setAutoBlockMove(currentBlockMove);
+                }
+                Plus previewPlus = new Plus(this);
+                previewPlus.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewPlus;
+                break;
+            case 9:
+                t = new Q(this);
+                if (isAuto) {
+                    ((Q) t).setAutoBlockMove(currentBlockMove);
+                }
+                Q previewQ = new Q(this);
+                previewQ.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewQ;
+                break;
         }
         // Show preview tetrisBlock
 
@@ -155,125 +203,21 @@ public class Tetris extends JFrame implements GGActListener {
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
-        if (currentBlock instanceof I) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((I) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((I) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((I) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((I) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof J) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((J) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((J) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((J) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((J) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof L) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((L) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((L) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((L) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((L) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof O) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((O) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((O) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((O) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((O) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof S) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((S) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((S) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((S) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((S) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof T) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((T) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((T) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((T) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((T) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof Z) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    ((Z) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((Z) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((Z) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((Z) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
+        switch (keyEvent) {
+            case KeyEvent.VK_UP:
+                ((TetrisPiece) currentBlock).rotate();
+                break;
+            case KeyEvent.VK_LEFT:
+                ((TetrisPiece) currentBlock).left();
+                break;
+            case KeyEvent.VK_RIGHT:
+                ((TetrisPiece) currentBlock).right();
+                break;
+            case KeyEvent.VK_DOWN:
+                ((TetrisPiece) currentBlock).drop();
+                break;
+            default:
+                return;
         }
     }
     public void act() {
