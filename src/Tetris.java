@@ -304,6 +304,14 @@ public class Tetris extends JFrame implements GGActListener {
         slowDown = 5;
     }
 
+    //randomly select from the TetrisPiece
+    /*
+    public Actor randomPiece(){
+
+    }
+
+     */
+
     // Different speed for manual and auto mode
     private int getSimulationTime() {
         if (isAuto) {

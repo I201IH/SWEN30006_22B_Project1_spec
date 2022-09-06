@@ -11,7 +11,7 @@ class J extends TetrisPiece
   private final String blockName = "J";
   private Location[][] r = new Location[4][4];
   private Tetris tetris;
-
+  
   J(Tetris tetris)
   {
     super(tetris);
