@@ -47,6 +47,10 @@ class P extends TetrisPiece implements TetrisPieceFactory
 
     public String toString() {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
+    @Override
+    public TetrisPiece create() {
+        return new P(tetris);
+    }
 
 
 

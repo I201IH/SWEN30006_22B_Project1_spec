@@ -43,6 +43,11 @@ class O extends TetrisPiece implements TetrisPieceFactory
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
 
+  @Override
+  public TetrisPiece create() {
+    return new O(tetris);
+  }
+
   /*public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
   }

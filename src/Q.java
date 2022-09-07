@@ -2,7 +2,7 @@ package src;
 
 import ch.aplu.jgamegrid.Location;
 
-class Q extends TetrisPiece{
+class Q extends TetrisPiece implements TetrisPieceFactory{
     private final int blockId = 6;
     private final String blockName = "Q";
     private Location[][] r = new Location[5][4];
@@ -51,6 +51,10 @@ class Q extends TetrisPiece{
 
     public String toString() {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
+    @Override
+    public TetrisPiece create() {
+        return new Q(tetris);
+    }
 
 
 
