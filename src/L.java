@@ -5,7 +5,7 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class L extends TetrisPiece
+class L extends TetrisPiece implements TetrisPieceFactory
 {
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];

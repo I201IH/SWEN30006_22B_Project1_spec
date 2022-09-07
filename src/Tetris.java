@@ -76,7 +76,8 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
         blockActionIndex++;
-        Actor t = null;
+        /*
+        Actor t = new I(this);
         int rnd;
 
         if (difficulty.equals("easy")){
@@ -87,13 +88,99 @@ public class Tetris extends JFrame implements GGActListener {
         }
         System.out.println(difficulty);
 
-        J j = new J(this);
+
+
+
+//        TetrisPiece testPiece = factory.create();
+//        System.out.println(testPiece.getClass().getName());
+//        t = testPiece;
+//        if (isAuto) {
+//            ((TetrisPiece) t).setAutoBlockMove(currentBlockMove);
+//        }
 
         /*
-        Actor pieceList[] = [new I(this), new J(this), new L(this), new O(this), new S(this),
-                new T(this), new Z(this), new P(this), new Plus(this), new Q(this)];
+        TetrisPiece preview = testPiece;
+        //I[rnd] I = new pieceList[rnd](this);
+        preview.display(gameGrid2, new Location(2, 1));
+        blockPreview = preview;*/
+
+        /*
+        public void setPreview(TetrisPiece t){
+            t.display(gameGrid2, new Location(2, 1));
+            blockPreview = t;
+        }
 
          */
+
+        Actor t = null;
+        int rnd = random.nextInt(7);
+        switch (rnd) {
+            case 0:
+                t = new I(this);
+                if (isAuto) {
+                    ((I) t).setAutoBlockMove(currentBlockMove);
+                }
+
+                I previewI = new I(this);
+                previewI.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewI;
+                break;
+            case 1:
+                t = new J(this);
+                if (isAuto) {
+                    ((J) t).setAutoBlockMove(currentBlockMove);
+                }
+                J previewJ = new J(this);
+                previewJ.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewJ;
+                break;
+            case 2:
+                t = new L(this);
+                if (isAuto) {
+                    ((L) t).setAutoBlockMove(currentBlockMove);
+                }
+                L previewL = new L(this);
+                previewL.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewL;
+                break;
+            case 3:
+                t = new O(this);
+                if (isAuto) {
+                    ((O) t).setAutoBlockMove(currentBlockMove);
+                }
+                O previewO = new O(this);
+                previewO.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewO;
+                break;
+            case 4:
+                t = new S(this);
+                if (isAuto) {
+                    ((S) t).setAutoBlockMove(currentBlockMove);
+                }
+                S previewS = new S(this);
+                previewS.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewS;
+                break;
+            case 5:
+                t = new T(this);
+                if (isAuto) {
+                    ((T) t).setAutoBlockMove(currentBlockMove);
+                }
+                T previewT = new T(this);
+                previewT.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewT;
+                break;
+            case 6:
+                t = new Z(this);
+                if (isAuto) {
+                    ((Z) t).setAutoBlockMove(currentBlockMove);
+                }
+                Z previewZ = new Z(this);
+                previewZ.display(gameGrid2, new Location(2, 1));
+                blockPreview = previewZ;
+                break;
+        }
+
 
 
         switch (rnd) {
@@ -220,6 +307,7 @@ public class Tetris extends JFrame implements GGActListener {
                 return;
         }
     }
+
     public void act() {
         removeFilledLine();
         moveBlock(gameGrid1.getKeyCode());

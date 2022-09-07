@@ -5,7 +5,7 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class Z extends TetrisPiece
+class Z extends TetrisPiece implements TetrisPieceFactory
 {
   private final int blockId = 6;
   private Location[][] r = new Location[4][4];
@@ -41,4 +41,10 @@ class Z extends TetrisPiece
   }
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
+
+
+  @Override
+  public TetrisPiece create() {
+    return new Z(tetris);
+  }
 }

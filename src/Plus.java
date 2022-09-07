@@ -3,7 +3,8 @@ package src;
 import ch.aplu.jgamegrid.Location;
 
 
-public class Plus extends TetrisPiece{
+public class Plus extends TetrisPiece implements TetrisPieceFactory
+{
     private final int blockId = 6;
     private final String blockName = "Plus";
     private Location[][] r = new Location[5][4];

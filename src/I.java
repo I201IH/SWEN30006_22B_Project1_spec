@@ -5,7 +5,7 @@ import ch.aplu.jgamegrid.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-class I extends TetrisPiece
+class I extends TetrisPiece implements TetrisPieceFactory
 {
   private final int blockId = 0;
   private final String blockName = "I";
@@ -44,4 +44,8 @@ class I extends TetrisPiece
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
   }
 
+  @Override
+  public TetrisPiece create() {
+    return new I(tetris);
+  }
 }
