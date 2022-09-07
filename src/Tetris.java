@@ -231,50 +231,37 @@ public class Tetris extends JFrame implements GGActListener {
                 blockPreview = previewS;
                 break;
             case 5:
+            {
                 t = new T(this);
-                if (isAuto) {
-                    ((T) t).setAutoBlockMove(currentBlockMove);
-                }
-                T previewT = new T(this);
-                previewT.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewT;
+                T preview = new T(this);
                 break;
+            }
+
             case 6:
+            {
                 t = new Z(this);
-                if (isAuto) {
-                    ((Z) t).setAutoBlockMove(currentBlockMove);
-                }
-                Z previewZ = new Z(this);
-                previewZ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewZ;
+                Z preview = new Z(this);
                 break;
+            }
             case 7:
+            {
                 t = new P(this);
-                if (isAuto) {
-                    ((P) t).setAutoBlockMove(currentBlockMove);
-                }
-                P previewP = new P(this);
-                previewP.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewP;
+                P preview = new P(this);
                 break;
+            }
             case 8:
+            {
                 t = new Plus(this);
-                if (isAuto) {
-                    ((Plus) t).setAutoBlockMove(currentBlockMove);
-                }
-                Plus previewPlus = new Plus(this);
-                previewPlus.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewPlus;
+                Plus preview = new Plus(this);
                 break;
-            case 9:
+            }
+            default:
+            {
                 t = new Q(this);
-                if (isAuto) {
-                    ((Q) t).setAutoBlockMove(currentBlockMove);
-                }
-                Q previewQ = new Q(this);
-                previewQ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewQ;
-                break;
+                Q preview = new Q(this);
+
+            }
+
         }
         // Show preview tetrisBlock
 
