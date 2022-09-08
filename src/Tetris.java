@@ -16,6 +16,10 @@ public class Tetris extends JFrame implements GGActListener {
     private int score = 0;
     private int slowDown = 5;
     private Random random = new Random(0);
+    public static LinkedHashMap<String, Integer> count = new LinkedHashMap<>();
+
+
+
 
     private TetrisGameCallback gameCallback;
 
@@ -57,6 +61,7 @@ public class Tetris extends JFrame implements GGActListener {
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
         // Initialise value
 
+
         initWithProperties(properties);
         this.gameCallback = gameCallback;
         blockActionIndex = 0;
@@ -78,7 +83,9 @@ public class Tetris extends JFrame implements GGActListener {
         showScore(score);
         slowDown = 5;
 
-        statistics =  new Statistics(score, difficulty);
+        statistics =  new Statistics(score, difficulty, count);
+
+
     }
 
     // create a block and assign to a preview mode
@@ -142,6 +149,9 @@ public class Tetris extends JFrame implements GGActListener {
             System.out.println(currentPiece.getClass().getSimpleName());
         }
 
+
+
+
         RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
                 new I(this),
                 new J(this),
@@ -156,11 +166,22 @@ public class Tetris extends JFrame implements GGActListener {
                     //new Plus(this)
                 //}
         });
+
         TetrisPiece preview = factory2.create(bound);
+
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
             TetrisPiece test2 = factory2.create(bound);
             preview = test2;
         }
+
+        if (!Statistics.count.containsKey(preview.getClass().getSimpleName())) {
+            Statistics.count.put(preview.getClass().getSimpleName(), 1);
+        } else{
+            Statistics.count.put(preview.getClass().getSimpleName(),
+                    Statistics.count.get(preview.getClass().getSimpleName()) + 1);
+        }
+
+
         //System.out.println(preview.getClass().getName());
         //System.out.println(factory2.getSeed());
         preview.display(gameGrid2, new Location(2, 1));
@@ -449,6 +470,7 @@ public class Tetris extends JFrame implements GGActListener {
         score = 0;
         showScore(score);
         slowDown = 5;
+        statistics.resetScore();
     }
 
     //randomly select from the TetrisPiece

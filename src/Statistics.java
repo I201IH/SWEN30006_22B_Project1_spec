@@ -17,7 +17,7 @@ public class Statistics {
     //private ArrayList<Integer> list = new ArrayList<Integer>();
     //score, each piece time, average score, difficulty level
     // Tetris class
-    public Statistics(int score, String diff){
+    public Statistics(int score, String diff, LinkedHashMap<String, Integer> count) {
         this.score = score;
         this.difficulty = diff;
         this.count.put("I", 0);
@@ -33,26 +33,26 @@ public class Statistics {
 
     }
 
-    /** This method is used to store scores in a game
-     *
+    /**
+     * This method is used to store scores in a game
      */
     public void
     storeScore(int score) {
         scoreList.add(score);
     }
 
-    public void printStatistics(int score){
+    public void printStatistics(int score) {
         try (PrintWriter pw =
                      new PrintWriter(new FileWriter("Statistics.txt"))) {
             storeScore(score);
             pw.println("Difficulty: " + difficulty);
             averageScore = calculateAverageScore(scoreList);
-            pw.println("Average score per round: "+ averageScore);
+            pw.println("Average score per round: " + averageScore);
             pw.println("------------------------------------------");
 
             //pw.format("Round #" + round + "\n" + "Score: %d\n", score);
-            for (int i = 0;i<scoreList.size();i++){
-                pw.println("Round #" + (i+1));
+            for (int i = 0; i < scoreList.size(); i++) {
+                pw.println("Round #" + (i + 1));
                 pw.println("Score: " + scoreList.get(i));
 
                 // prints out the number of blocks
@@ -62,7 +62,6 @@ public class Statistics {
         } catch(IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void resetScore(){
