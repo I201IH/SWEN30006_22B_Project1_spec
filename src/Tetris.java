@@ -18,21 +18,20 @@ public class Tetris extends JFrame implements GGActListener {
     private Random random = new Random(0);
 
     private TetrisGameCallback gameCallback;
-    /*
+
     private RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
             new I(this),
             new J(this),
             new L(this),
             new O(this),
-            new P(this),
-            new Q(this),
+            //new P(this),
+            //new Q(this),
             new S(this),
             new T(this),
             new Z(this),
-            new Plus(this)
+            //new Plus(this)
     });
 
-     */
 
     private boolean isAuto = false;
 
@@ -133,8 +132,45 @@ public class Tetris extends JFrame implements GGActListener {
 
          */
 
+
+
+        // Randomly select, but test 2 does not follow
+        //random in constructor=seed
+        int bound = 7;
+        Actor currentPiece = factory.create(bound);
+        if (isAuto) {
+            ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
+            System.out.println(currentPiece.getClass().getName());
+        }
+
+        RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
+                new I(this),
+                new J(this),
+                new L(this),
+                new O(this),
+                new S(this),
+                new T(this),
+                new Z(this),
+                /* Add if difficulty != "easy"
+                //new P(this),
+                //new Q(this),
+                //new Plus(this)
+                 */
+        });
+        TetrisPiece preview = factory2.create(bound);
+        while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
+            TetrisPiece test2 = factory2.create(bound);
+            preview = test2;
+        }
+        //System.out.println(preview.getClass().getName());
+        //System.out.println(factory2.getSeed());
+        preview.display(gameGrid2, new Location(2, 1));
+        blockPreview = preview;
+/*
         Actor t = null;
         int rnd = random.nextInt(7);
+        System.out.println("random = "+ random);
+        System.out.println("rnd = "+rnd);
         switch (rnd) {
             case 0:
                 t = new I(this);
@@ -278,8 +314,12 @@ public class Tetris extends JFrame implements GGActListener {
          */
 
         // Show preview tetrisBlock
-        t.setSlowDown(slowDown);
-        return t;
+        //t.setSlowDown(slowDown);
+       // return t;
+        //Show preview tetrisBlock
+        currentPiece.setSlowDown(slowDown);
+        return currentPiece;
+
     }
 
     void setCurrentTetrisBlock(Actor t) {
