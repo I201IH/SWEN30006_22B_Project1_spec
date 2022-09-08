@@ -36,7 +36,7 @@ public class Tetris extends JFrame implements GGActListener {
     private boolean isAuto = false;
 
     private String difficulty = null;
-
+    private Statistics statistics;
 
     private int seed = 30006;
     // For testing mode, the block will be moved automatically based on the blockActions.
@@ -60,7 +60,6 @@ public class Tetris extends JFrame implements GGActListener {
         initWithProperties(properties);
         this.gameCallback = gameCallback;
         blockActionIndex = 0;
-        System.out.println("LOcation");
         // Set up the UI components. No need to modify the UI Components
         tetrisComponents = new TetrisComponents();
         tetrisComponents.initComponents(this);
@@ -68,8 +67,6 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.setSimulationPeriod(getSimulationTime());
 
         // Add the first block to start
-        System.out.println("Error");
-
         currentBlock = createRandomTetrisBlock();
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
@@ -80,6 +77,8 @@ public class Tetris extends JFrame implements GGActListener {
         score = 0;
         showScore(score);
         slowDown = 5;
+
+        statistics =  new Statistics(score, difficulty);
     }
 
     // create a block and assign to a preview mode
@@ -427,6 +426,7 @@ public class Tetris extends JFrame implements GGActListener {
     void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
+        statistics.printStatistics(score);
         if (isAuto) {
             System.exit(0);
         }
