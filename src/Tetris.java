@@ -139,7 +139,7 @@ public class Tetris extends JFrame implements GGActListener {
         Actor currentPiece = factory.create(bound);
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
-            System.out.println(currentPiece.getClass().getName());
+            System.out.println(currentPiece.getClass().getSimpleName());
         }
 
         RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
@@ -150,11 +150,11 @@ public class Tetris extends JFrame implements GGActListener {
                 new S(this),
                 new T(this),
                 new Z(this),
-                /* Add if difficulty != "easy"
-                //new P(this),
-                //new Q(this),
-                //new Plus(this)
-                 */
+                //if (difficulty != "easy") {
+                    //new P(this),
+                    //new Q(this),
+                    //new Plus(this)
+                //}
         });
         TetrisPiece preview = factory2.create(bound);
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
