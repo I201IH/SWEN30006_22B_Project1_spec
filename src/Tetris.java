@@ -39,7 +39,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     private boolean isAuto = false;
 
-    private String difficulty = null;
+    private String difficulty = "easy";
     private Statistics statistics;
 
     private int seed = 30006;
@@ -183,6 +183,8 @@ public class Tetris extends JFrame implements GGActListener {
 
 
         //System.out.println(preview.getClass().getName());
+
+
         //System.out.println(factory2.getSeed());
         preview.display(gameGrid2, new Location(2, 1));
         blockPreview = preview;
