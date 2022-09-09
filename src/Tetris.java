@@ -36,9 +36,53 @@ public class Tetris extends JFrame implements GGActListener {
             new S(this, diff.getCanRotate()),
             new T(this, diff.getCanRotate()),
             new Z(this, diff.getCanRotate()),
+            new P(this, diff.getCanRotate()),
+            new Q(this, diff.getCanRotate()),
+            new Plus(this, diff.getCanRotate())
+    });
+
+    private RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
+            new I(this, diff.getCanRotate()),
+            new J(this, diff.getCanRotate()),
+            new L(this, diff.getCanRotate()),
+            new O(this, diff.getCanRotate()),
+            new S(this, diff.getCanRotate()),
+            new T(this, diff.getCanRotate()),
+            new Z(this, diff.getCanRotate()),
+            new P(this, diff.getCanRotate()),
+            new Q(this, diff.getCanRotate()),
+            new Plus(this, diff.getCanRotate())
+            //if (difficulty != "easy") {
             //new P(this),
             //new Q(this),
             //new Plus(this)
+            //}
+    });
+
+    RandomFactory factoryDiff = new RandomFactory(new TetrisPieceFactory[]{
+            new I(this, diff.getCanRotate()),
+            new J(this, diff.getCanRotate()),
+            new L(this, diff.getCanRotate()),
+            new O(this, diff.getCanRotate()),
+            new S(this, diff.getCanRotate()),
+            new T(this, diff.getCanRotate()),
+            new Z(this, diff.getCanRotate()),
+            new P(this, diff.getCanRotate()),
+            new Q(this, diff.getCanRotate()),
+            new Plus(this, diff.getCanRotate())
+    });
+
+    RandomFactory factoryDiff2 = new RandomFactory(new TetrisPieceFactory[]{
+            new I(this, diff.getCanRotate()),
+            new J(this, diff.getCanRotate()),
+            new L(this, diff.getCanRotate()),
+            new O(this, diff.getCanRotate()),
+            new S(this, diff.getCanRotate()),
+            new T(this, diff.getCanRotate()),
+            new Z(this, diff.getCanRotate()),
+            new P(this, diff.getCanRotate()),
+            new Q(this, diff.getCanRotate()),
+            new Plus(this, diff.getCanRotate())
     });
 
 
@@ -129,39 +173,44 @@ public class Tetris extends JFrame implements GGActListener {
 
         blockActionIndex++;
 
+        RandomFactory current;
+        RandomFactory current2;
+        int bound = 7;
 
+        if (difficulty.equals("easy")){
+            bound = 7;
+            current = factory;
+            current2 = factory2;
+        }
+        else{
+            bound = 10;
+            current = factoryDiff;
+            current2 = factoryDiff2;
+        }
 
         // Randomly select, but test 2 does not follow
         //random in constructor=seed
-        int bound = 7;
         //easy = new Easy(this);
-        Actor currentPiece = factory.create(bound);
+       // Actor currentPiece  = chooseFactory(difficulty).create(bound);
+
+
+        Actor currentPiece = current.create(bound);
+        //System.out.println("Test Error " + chooseFactory(difficulty).getSeed());
         //Actor currentPiece = factory.create(bound);
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
         }
 
-        RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
-                new I(this, diff.getCanRotate()),
-                new J(this, diff.getCanRotate()),
-                new L(this, diff.getCanRotate()),
-                new O(this, diff.getCanRotate()),
-                new S(this, diff.getCanRotate()),
-                new T(this, diff.getCanRotate()),
-                new Z(this, diff.getCanRotate()),
-                //if (difficulty != "easy") {
-                    //new P(this),
-                    //new Q(this),
-                    //new Plus(this)
-                //}
-        });
 
-        TetrisPiece preview = factory2.create(bound);
+        TetrisPiece preview = current2.create(bound);
 
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
-            TetrisPiece test2 = factory2.create(bound);
+            TetrisPiece test2 = current2.create(bound);
+            //System.out.println("factory 2 's rnd is " + current2.getSeed());
             preview = test2;
         }
+
+
 
         if (!Statistics.count.containsKey(preview.getClass().getSimpleName())) {
             Statistics.count.put(preview.getClass().getSimpleName(), 1);
@@ -169,14 +218,9 @@ public class Tetris extends JFrame implements GGActListener {
             Statistics.count.put(preview.getClass().getSimpleName(),
                     Statistics.count.get(preview.getClass().getSimpleName()) + 1);
         }
-
-
         preview.display(gameGrid2, new Location(2, 1));
         blockPreview = preview;
 
-        // Show preview tetrisBlock
-        //t.setSlowDown(slowDown);
-       // return t;
         //Show preview tetrisBlock
         currentPiece.setSlowDown(slowDown);
         return currentPiece;

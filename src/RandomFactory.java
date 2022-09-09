@@ -17,7 +17,8 @@ public class RandomFactory{
     public TetrisPiece create(int bound) {
         setBound(bound);
         int rnd = r.nextInt(bound);
-        //setSeed(rnd);
+        //System.out.println("rnd is "+ rnd);
+        setSeed(rnd);
         return factories[rnd].create();
     }
 

@@ -1,15 +1,15 @@
-Difficulty: medium
-Average score per round: 0.0
+Difficulty: easy
+Average score per round: 2.0
 ------------------------------------------
 Round #1
-Score: 0
+Score: 2
 I: 6
-J: 5
-L: 9
-O: 8
-S: 6
-T: 8
-Z: 7
+J: 1
+L: 3
+O: 5
+S: 4
+T: 5
+Z: 2
 +: 0
 P: 0
 Q: 0
