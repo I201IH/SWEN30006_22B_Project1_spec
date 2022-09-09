@@ -1,13 +1,51 @@
 package src;
 
-import java.util.Properties;
 
-public class Medium extends Tetris{
+public class Medium extends Difficulty{
 
-    public Medium(TetrisGameCallback gameCallback, Properties properties) {
-        super(gameCallback, properties);
+    protected Tetris tetris;
+    private final boolean canRotate = true;
+    public Medium(Tetris tetris) {
+        super(tetris);
+        this.tetris = tetris;
     }
-    @Override
+
+    public boolean getCanRotate(){
+        return canRotate;
+    }
+    //create random piece
+    /*
+    protected RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
+            new I(tetris),
+            new J(tetris),
+            new L(tetris),
+            new O(tetris),
+            new S(tetris),
+            new T(tetris),
+            new Z(tetris),
+            new P(tetris),
+            new Q(tetris),
+            new Plus(tetris)
+    });
+
+     */
+
+    /*
+    protected RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
+            new I(tetris),
+            new J(tetris),
+            new L(tetris),
+            new O(tetris),
+            new S(tetris),
+            new T(tetris),
+            new Z(tetris),
+            new P(tetris),
+            new Q(tetris),
+            new Plus(tetris)
+    });
+
+     */
+
     public int setSpeed(int score){
         int slowDown = (int) (5 * 0.8);
         if (score > 10)

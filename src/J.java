@@ -12,9 +12,9 @@ class J extends TetrisPiece implements TetrisPieceFactory
   private Location[][] r = new Location[4][4];
   private Tetris tetris;
   
-  J(Tetris tetris)
+  J(Tetris tetris, boolean canRotated)
   {
-    super(tetris);
+    super(tetris, canRotated);
     this.tetris = tetris;
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));
@@ -46,6 +46,6 @@ class J extends TetrisPiece implements TetrisPieceFactory
 
   @Override
   public TetrisPiece create() {
-    return new J(tetris);
+    return new J(tetris, canRotate);
   }
 }

@@ -10,11 +10,11 @@ class L extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];
   private final String blockName = "L";
+  //private boolean canRotated = true;
 
-  L(Tetris tetris)
+  L(Tetris tetris, boolean canRotated)
   {
-    super(tetris);
-
+    super(tetris, canRotated);
     this.tetris = tetris;
     // rotId 0
     r[0][0] = new Location(new Location(1, 0));
@@ -45,6 +45,6 @@ class L extends TetrisPiece implements TetrisPieceFactory
   return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
   @Override
   public TetrisPiece create() {
-    return new L(tetris);
+    return new L(tetris, canRotate);
   }
 }

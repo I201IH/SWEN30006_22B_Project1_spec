@@ -11,9 +11,9 @@ class O extends TetrisPiece implements TetrisPieceFactory
   private Location[][] r = new Location[4][4];
   private final String blockName = "O";
 
-  O(Tetris tetris)
+  O(Tetris tetris, boolean canRotated)
   {
-    super(tetris);
+    super(tetris,canRotated);
     this.tetris = tetris;
     // rotId 0
     r[0][0] = new Location(new Location(0, 0));
@@ -45,7 +45,7 @@ class O extends TetrisPiece implements TetrisPieceFactory
 
   @Override
   public TetrisPiece create() {
-    return new O(tetris);
+    return new O(tetris,canRotate);
   }
 
   /*public String toString() {

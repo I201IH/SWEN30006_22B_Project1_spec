@@ -11,10 +11,14 @@ public abstract class TetrisPiece extends Actor {
     private String blockName;
     private Location[][] r = new Location[4][4];
     protected Tetris tetris;
+    protected boolean canRotate;
+    private boolean ptn = false;
 
-    TetrisPiece(Tetris tetris){
+
+    TetrisPiece(Tetris tetris, boolean canRotate){
         super();
         this.tetris = tetris;
+        this.canRotate = canRotate;
     }
 
     private boolean isStarting = true;
@@ -26,6 +30,10 @@ public abstract class TetrisPiece extends Actor {
     private int autoBlockIndex = 0;
     public void setAutoBlockMove(String autoBlockMove) {
         this.autoBlockMove = autoBlockMove;
+    }
+
+    public boolean setCanRotate(boolean canRotate){
+        return canRotate;
     }
 
     // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
@@ -72,7 +80,9 @@ public abstract class TetrisPiece extends Actor {
                 right();
                 break;
             case "T":
-                rotate();
+                if (canRotate){
+                    rotate();
+                }
                 break;
             case "D":
                 drop();
@@ -131,14 +141,16 @@ public abstract class TetrisPiece extends Actor {
         rotId++;
         if (rotId == 4)
             rotId = 0;
-
-        if (canRotate(rotId))
-        {
-            for (TetroBlock a : blocks)
+        if (canRotate){
+            if (canRotate(rotId))
             {
-                Location loc = new Location(getX() + a.getRelLoc(rotId).x, getY() + a.getRelLoc(rotId).y);
-                a.setLocation(loc);
+                for (TetroBlock a : blocks)
+                {
+                    Location loc = new Location(getX() + a.getRelLoc(rotId).x, getY() + a.getRelLoc(rotId).y);
+                    a.setLocation(loc);
+                }
             }
+
         }
         else
             rotId = oldRotId;  // Restore

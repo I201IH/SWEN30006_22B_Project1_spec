@@ -17,24 +17,31 @@ public class Tetris extends JFrame implements GGActListener {
     private int slowDown = 5;
     private Random random = new Random(0);
     public static LinkedHashMap<String, Integer> count = new LinkedHashMap<>();
-
+    protected Difficulty diff = new Easy(this);
+    protected Easy easy;
+    protected Medium medium = new Medium(this);
+    protected Madness madness = new Madness(this);
+    private boolean canRotated = true;
 
 
 
     private TetrisGameCallback gameCallback;
 
+
     private RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
-            new I(this),
-            new J(this),
-            new L(this),
-            new O(this),
+            new I(this, diff.getCanRotate()),
+            new J(this, diff.getCanRotate()),
+            new L(this, diff.getCanRotate()),
+            new O(this, diff.getCanRotate()),
+            new S(this, diff.getCanRotate()),
+            new T(this, diff.getCanRotate()),
+            new Z(this, diff.getCanRotate()),
             //new P(this),
             //new Q(this),
-            new S(this),
-            new T(this),
-            new Z(this),
             //new Plus(this)
     });
+
+
 
 
     private boolean isAuto = false;
@@ -47,6 +54,24 @@ public class Tetris extends JFrame implements GGActListener {
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
     private String [] blockActions = new String[10];
     private int blockActionIndex = 0;
+
+    public Difficulty selectDiff(String difficulty){
+        switch (difficulty){
+            case ("easy"):
+                diff = new Easy(this);
+                //System.out.println("easy value is "+ diff.getCanRotate());
+                break;
+            case("medium"):
+                diff = new Medium(this);
+                //System.out.println("medium value is "+ diff.getCanRotate());
+                break;
+            case("madness"):
+                diff = new Madness(this);
+                //System.out.println("madness value is "+ diff.getCanRotate());
+                break;
+        }
+        return diff;
+    }
 
     // Initialise object
     private void initWithProperties(Properties properties) {
@@ -84,7 +109,10 @@ public class Tetris extends JFrame implements GGActListener {
         slowDown = 5;
 
         statistics =  new Statistics(score, difficulty, count);
-
+        diff = selectDiff(difficulty);
+        easy = new Easy(this);
+        medium = new Medium(this);
+        madness = new Madness(this);
 
     }
 
@@ -100,66 +128,27 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
         blockActionIndex++;
-        /*
-        Actor t = new I(this);
-        int rnd;
-
-        if (difficulty.equals("easy")){
-            rnd = random.nextInt(7);
-        }
-        else {
-            rnd = random.nextInt(10);
-        }
-        System.out.println(difficulty);
-
-         */
-
-
-
-
-//        TetrisPiece testPiece = factory.create();
-//        System.out.println(testPiece.getClass().getName());
-//        t = testPiece;
-//        if (isAuto) {
-//            ((TetrisPiece) t).setAutoBlockMove(currentBlockMove);
-//        }
-
-        /*
-        TetrisPiece preview = testPiece;
-        //I[rnd] I = new pieceList[rnd](this);
-        preview.display(gameGrid2, new Location(2, 1));
-        blockPreview = preview;*/
-
-        /*
-        public void setPreview(TetrisPiece t){
-            t.display(gameGrid2, new Location(2, 1));
-            blockPreview = t;
-        }
-
-         */
 
 
 
         // Randomly select, but test 2 does not follow
         //random in constructor=seed
         int bound = 7;
+        //easy = new Easy(this);
         Actor currentPiece = factory.create(bound);
+        //Actor currentPiece = factory.create(bound);
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
-            System.out.println(currentPiece.getClass().getSimpleName());
         }
 
-
-
-
         RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
-                new I(this),
-                new J(this),
-                new L(this),
-                new O(this),
-                new S(this),
-                new T(this),
-                new Z(this),
+                new I(this, diff.getCanRotate()),
+                new J(this, diff.getCanRotate()),
+                new L(this, diff.getCanRotate()),
+                new O(this, diff.getCanRotate()),
+                new S(this, diff.getCanRotate()),
+                new T(this, diff.getCanRotate()),
+                new Z(this, diff.getCanRotate()),
                 //if (difficulty != "easy") {
                     //new P(this),
                     //new Q(this),
@@ -182,158 +171,8 @@ public class Tetris extends JFrame implements GGActListener {
         }
 
 
-        //System.out.println(preview.getClass().getName());
-
-
-        //System.out.println(factory2.getSeed());
         preview.display(gameGrid2, new Location(2, 1));
         blockPreview = preview;
-/*
-        Actor t = null;
-        int rnd = random.nextInt(7);
-        System.out.println("random = "+ random);
-        System.out.println("rnd = "+rnd);
-        switch (rnd) {
-            case 0:
-                t = new I(this);
-                if (isAuto) {
-                    ((I) t).setAutoBlockMove(currentBlockMove);
-                }
-
-                I previewI = new I(this);
-                previewI.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewI;
-                break;
-            case 1:
-                t = new J(this);
-                if (isAuto) {
-                    ((J) t).setAutoBlockMove(currentBlockMove);
-                }
-                J previewJ = new J(this);
-                previewJ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewJ;
-                break;
-            case 2:
-                t = new L(this);
-                if (isAuto) {
-                    ((L) t).setAutoBlockMove(currentBlockMove);
-                }
-                L previewL = new L(this);
-                previewL.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewL;
-                break;
-            case 3:
-                t = new O(this);
-                if (isAuto) {
-                    ((O) t).setAutoBlockMove(currentBlockMove);
-                }
-                O previewO = new O(this);
-                previewO.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewO;
-                break;
-            case 4:
-                t = new S(this);
-                if (isAuto) {
-                    ((S) t).setAutoBlockMove(currentBlockMove);
-                }
-                S previewS = new S(this);
-                previewS.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewS;
-                break;
-            case 5:
-                t = new T(this);
-                if (isAuto) {
-                    ((T) t).setAutoBlockMove(currentBlockMove);
-                }
-                T previewT = new T(this);
-                previewT.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewT;
-                break;
-            case 6:
-                t = new Z(this);
-                if (isAuto) {
-                    ((Z) t).setAutoBlockMove(currentBlockMove);
-                }
-                Z previewZ = new Z(this);
-                previewZ.display(gameGrid2, new Location(2, 1));
-                blockPreview = previewZ;
-                break;
-        }
-
-
-
-        /*
-        switch (rnd) {
-            case 0: {
-                t = new I(this);
-                I preview = new I(this);
-                break;
-            }
-            case 1: {
-                t = new J(this);
-                J preview = new J(this);
-                break;
-            }
-            case 2:
-            {
-                t = new L(this);
-                L preview = new L(this);
-                break;
-            }
-            case 3:
-            {
-                t = new O(this);
-                O preview = new O(this);
-                break;
-            }
-            case 4:
-            {
-                t = new S(this);
-                S preview = new S(this);
-                break;
-            }
-            case 5:
-            {
-                t = new T(this);
-                T preview = new T(this);
-                break;
-            }
-
-            case 6:
-            {
-                t = new Z(this);
-                Z preview = new Z(this);
-                break;
-            }
-            case 7:
-            {
-                t = new P(this);
-                P preview = new P(this);
-                break;
-            }
-            case 8:
-            {
-                t = new Plus(this);
-                Plus preview = new Plus(this);
-                break;
-            }
-            default:
-            {
-                t = new Q(this);
-                Q preview = new Q(this);
-
-            }
-
-        }
-
-        if (isAuto) {
-            ((TetrisPiece) t).setAutoBlockMove(currentBlockMove);
-        }
-        preview.display(gameGrid2, new Location(2, 1));
-        blockPreview = preview;
-
-
-         */
 
         // Show preview tetrisBlock
         //t.setSlowDown(slowDown);
@@ -354,7 +193,9 @@ public class Tetris extends JFrame implements GGActListener {
     private void moveBlock(int keyEvent) {
         switch (keyEvent) {
             case KeyEvent.VK_UP:
-                ((TetrisPiece) currentBlock).rotate();
+                if (diff.getCanRotate()){
+                    ((TetrisPiece) currentBlock).rotate();
+                }
                 break;
             case KeyEvent.VK_LEFT:
                 ((TetrisPiece) currentBlock).left();
@@ -415,11 +256,12 @@ public class Tetris extends JFrame implements GGActListener {
                     slowDown = 0;
 
                  */
-                setSpeed(score);
+                slowDown = diff.setSpeed(score);
             }
         }
     }
 
+    /*
     public int setSpeed(int score){
         int slowDown = 5;
         if (score > 10)
@@ -434,6 +276,8 @@ public class Tetris extends JFrame implements GGActListener {
             slowDown = 0;
         return slowDown;
     }
+
+     */
 
     // Show Score and Game Over
 
@@ -475,13 +319,6 @@ public class Tetris extends JFrame implements GGActListener {
         statistics.resetScore();
     }
 
-    //randomly select from the TetrisPiece
-    /*
-    public Actor randomPiece(){
-
-    }
-
-     */
 
     // Different speed for manual and auto mode
     private int getSimulationTime() {

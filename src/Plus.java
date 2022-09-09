@@ -10,9 +10,9 @@ public class Plus extends TetrisPiece implements TetrisPieceFactory
     private Location[][] r = new Location[5][4];
     private Tetris tetris;
 
-    Plus (Tetris tetris)
+    Plus (Tetris tetris, boolean canRotated)
     {
-        super(tetris);
+        super(tetris, canRotated);
         this.tetris = tetris;
         // rotId 0
         r[0][0] = new Location(new Location(-1, 0));
@@ -51,7 +51,7 @@ public class Plus extends TetrisPiece implements TetrisPieceFactory
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
     @Override
     public TetrisPiece create() {
-        return new Plus(tetris);
+        return new Plus(tetris,canRotate);
     }
 
 

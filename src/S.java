@@ -11,9 +11,9 @@ class S extends TetrisPiece implements TetrisPieceFactory
   private Location[][] r = new Location[4][4];
   private final String blockName = "S";
 
-  S(Tetris tetris)
+  S(Tetris tetris, boolean canRotated)
   {
-    super(tetris);
+    super(tetris, canRotated);
     this.tetris = tetris;
 
     // rotId 0
@@ -48,6 +48,6 @@ class S extends TetrisPiece implements TetrisPieceFactory
 
   @Override
   public TetrisPiece create() {
-    return new S(tetris);
+    return new S(tetris, canRotate);
   }
 }

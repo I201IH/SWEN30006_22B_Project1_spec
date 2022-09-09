@@ -11,9 +11,9 @@ class Z extends TetrisPiece implements TetrisPieceFactory
   private Location[][] r = new Location[4][4];
   private final String blockName = "Z";
 
-  Z(Tetris tetris)
+  Z(Tetris tetris, boolean canRotated)
   {
-    super(tetris);
+    super(tetris, canRotated);
     this.tetris = tetris;
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));
@@ -45,6 +45,6 @@ class Z extends TetrisPiece implements TetrisPieceFactory
 
   @Override
   public TetrisPiece create() {
-    return new Z(tetris);
+    return new Z(tetris, canRotate);
   }
 }
