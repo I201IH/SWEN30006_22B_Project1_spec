@@ -12,8 +12,8 @@ class Q extends TetrisPiece implements TetrisPieceFactory{
 
         super(tetris, canRotated);
         this.tetris = tetris;
-        // rotId 0
 
+        // rotId 0
         r[0][0] = new Location(new Location(-1,0));
         r[1][0] = new Location(new Location(-1, -1));
         r[2][0] = new Location(new Location(0, -1));

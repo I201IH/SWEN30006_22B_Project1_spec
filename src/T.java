@@ -10,12 +10,13 @@ class T extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 5;
   private Location[][] r = new Location[4][4];
   private final String blockName = "T";
-
+  private Tetris tetris;
 
   T(Tetris tetris, boolean canRotated)
   {
     super(tetris, canRotated);
     this.tetris = tetris;
+
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));
     r[1][0] = new Location(new Location(0, 0));

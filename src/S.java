@@ -10,6 +10,7 @@ class S extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 4;
   private Location[][] r = new Location[4][4];
   private final String blockName = "S";
+  private Tetris tetris;
 
   S(Tetris tetris, boolean canRotated)
   {

@@ -2,6 +2,9 @@ package src;
 
 import java.util.Properties;
 
+/**
+ * Represents level Easy
+ */
 public class Easy extends Difficulty{
     protected Tetris tetris;
     protected RandomFactory factory;

@@ -6,22 +6,51 @@ import ch.aplu.jgamegrid.Location;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a tetris piece as a parent class for all the other specific pieces
+ */
 public abstract class TetrisPiece extends Actor {
+    /**
+     * A unique id of a block
+     */
     private int blockId;
+    /**
+     * The name of a block
+     */
     private String blockName;
+    /**
+     * Location of a block
+     */
     private Location[][] r = new Location[4][4];
+    /**
+     * A tetris game
+     */
     protected Tetris tetris;
+    /**
+     * Whether a block can rotate
+     */
     protected boolean canRotate;
     private boolean ptn = false;
 
 
+    /**
+     * Constructor to create an object of class TetrisPiece
+     * @param tetris
+     * @param canRotate
+     */
     TetrisPiece(Tetris tetris, boolean canRotate){
         super();
         this.tetris = tetris;
         this.canRotate = canRotate;
     }
 
+    /**
+     * Whether a game is starting
+     */
     private boolean isStarting = true;
+    /**
+     * Rotation id of a block
+     */
     protected int rotId = 0;
     private int nb;
     protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
@@ -36,7 +65,10 @@ public abstract class TetrisPiece extends Actor {
         return canRotate;
     }
 
-    // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
+    /**
+     * The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
+     */
+
     public void act()
     {
         if (isStarting) {
@@ -69,7 +101,9 @@ public abstract class TetrisPiece extends Actor {
         }
     }
 
-    // Based on the input in the properties file, the block can move automatically
+    /**
+     * Based on the input in the properties file, the block can move automatically
+     */
     private void autoMove() {
         String moveString = autoBlockMove.substring(autoBlockIndex, autoBlockIndex + 1);
         switch (moveString) {
@@ -88,11 +122,14 @@ public abstract class TetrisPiece extends Actor {
                 drop();
                 break;
         }
-
         autoBlockIndex++;
     }
 
-    // Check if the block can be played automatically based on the properties file
+    /**
+     * Check if the block can be played automatically based on the properties file
+     * @return boolean Determines if a block can be automatically played if property auto is true
+     */
+    //
     private boolean canAutoPlay() {
         if (autoBlockMove != null && !autoBlockMove.equals("")) {
             if (autoBlockMove.length() > autoBlockIndex) {
@@ -105,6 +142,11 @@ public abstract class TetrisPiece extends Actor {
         }
     }
 
+    /**
+     * Display the image of the block
+     * @param gg
+     * @param location
+     */
     void display(GameGrid gg, Location location)
     {
         for (TetroBlock a : blocks)
@@ -115,7 +157,9 @@ public abstract class TetrisPiece extends Actor {
         }
     }
 
-    // Actual actions on the block: move the block left, right, drop and rotate the block
+    /**
+     * Move the block left, right, drop and rotate the block
+     */
     void left()
     {
         if (isStarting)
@@ -124,6 +168,9 @@ public abstract class TetrisPiece extends Actor {
         advance();
     }
 
+    /**
+     * Move the block right
+     */
     void right()
     {
         if (isStarting)
@@ -132,6 +179,9 @@ public abstract class TetrisPiece extends Actor {
         advance();
     }
 
+    /**
+     * Rotate the block
+     */
     void rotate()
     {
         if (isStarting)
@@ -150,13 +200,18 @@ public abstract class TetrisPiece extends Actor {
                     a.setLocation(loc);
                 }
             }
-
         }
         else
             rotId = oldRotId;  // Restore
 
     }
 
+
+    /**
+     * Determines if a block can be rotated
+     * @param rotId
+     * @return boolean true if a block can be rotated
+     */
     private boolean canRotate(int rotId)
     {
         // Check for every rotated tetroBlock within the tetrisBlock
@@ -176,6 +231,9 @@ public abstract class TetrisPiece extends Actor {
         return true;
     }
 
+    /**
+     * Drop the block
+     */
     void drop()
     {
         if (isStarting)
@@ -183,7 +241,10 @@ public abstract class TetrisPiece extends Actor {
         setSlowDown(0);
     }
 
-    // Logic to check if the block has been removed (as winning a line) or drop to the bottom
+    /**
+     * Logic to check if the block has been removed (as winning a line) or drop to the bottom
+     * @return boolean true if the block has been removed (as winning a line) or drop to the bottom
+     */
     private boolean advance()
     {
         boolean canMove = false;
@@ -225,7 +286,11 @@ public abstract class TetrisPiece extends Actor {
         return false;
     }
 
-    // Override Actor.setDirection()
+
+    /**
+     * Override Actor.setDirection()
+     * @param dir
+     */
     public void setDirection(double dir)
     {
         super.setDirection(dir);
@@ -233,7 +298,9 @@ public abstract class TetrisPiece extends Actor {
             a.setDirection(dir);
     }
 
-    // Override Actor.move()
+    /**
+     * Override Actor.move()
+     */
     public void move()
     {
         if (isRemoved())
@@ -249,7 +316,9 @@ public abstract class TetrisPiece extends Actor {
         System.out.println(word);
     }
 
-    // Override Actor.removeSelf()
+    /**
+     * Override Actor.removeSelf()
+     */
     public void removeSelf()
     {
         super.removeSelf();
@@ -257,6 +326,10 @@ public abstract class TetrisPiece extends Actor {
             a.removeSelf();
     }
 
+    /**
+     * Get the rotation id of a block
+     * @return The rotation id of a block
+     */
     public int getRotId(){
         return this.rotId;
     }

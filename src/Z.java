@@ -10,6 +10,7 @@ class Z extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 6;
   private Location[][] r = new Location[4][4];
   private final String blockName = "Z";
+  private Tetris tetris;
 
   Z(Tetris tetris, boolean canRotated)
   {

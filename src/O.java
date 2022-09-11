@@ -10,6 +10,7 @@ class O extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 3;
   private Location[][] r = new Location[4][4];
   private final String blockName = "O";
+  private Tetris tetris;
 
   O(Tetris tetris, boolean canRotated)
   {

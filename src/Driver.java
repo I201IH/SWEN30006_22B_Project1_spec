@@ -7,6 +7,9 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.Properties;
 
+/**
+ * Represents the main class Driver to run the game
+ */
 public class Driver {
     public static final String DEFAULT_PROPERTIES_PATH = "properties/test2.properties";
 

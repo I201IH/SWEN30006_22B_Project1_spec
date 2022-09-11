@@ -6,44 +6,79 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * Represents the statistics of a game
+ */
 public class Statistics {
+    /**
+     * Total score of a game
+     */
     private int score = 0;
+    /**
+     * The round a game is in
+     */
     private int round = 1;
+    /**
+     * Store the average score across all games
+     */
     private double averageScore = 0;
+    /**
+     * The difficulty of a game
+     */
     private String difficulty = null;
+    /**
+     * Store all scores of all games
+     */
     private ArrayList<Integer> scoreList = new ArrayList<Integer>();
-    private LinkedHashMap<String, Integer> count;
-    private ArrayList<LinkedHashMap<String, Integer>> countList = new ArrayList<>();
+    /**
+     * The number of blocks in a game
+     */
+    private LinkedHashMap<String, Integer> numBlocks;
+    /**
+     * Store all records of number of blocks in all games
+     */
+    private ArrayList<LinkedHashMap<String, Integer>> numBlocksList = new ArrayList<>();
 
-    //score, each piece time, average score, difficulty level
-    // Tetris class
-    public Statistics(int score, String diff, LinkedHashMap<String, Integer> count) {
+    /**
+     * Constructor to create an object of class Statistics
+     * @param score
+     * @param diff
+     * @param numBlocks
+     */
+    public Statistics(int score, String diff, LinkedHashMap<String, Integer> numBlocks) {
         this.score = score;
         this.difficulty = diff;
-        this.count = count;
+        this.numBlocks = numBlocks;
     }
 
     /**
-     * This method is used to store scores in a game
+     * This method is used to store scores in all games
+     * @param score Parameter to store the score of a game
+     * @return null The method adds all the scores into a list
      */
-    public void
-    storeScore(int score) {
+    public void storeScore(int score) {
         scoreList.add(score);
     }
 
     /**
-     * This method is used to store counts of blocks in a game
+     * This method is used to store the records of the number of blocks in all games
+     * @param count Parameter to store the record of the number of blocks of a game
+     * @return null The method adds all the records of the number of blocks into a list
      */
-    public void
-    storeCount(LinkedHashMap<String, Integer> count) {
-        countList.add(count);
+    public void storeNumBlocks(LinkedHashMap<String, Integer> count) {
+        numBlocksList.add(count);
     }
 
+    /**
+     * This method is used to print out the statistic into a text file
+     * @param score The score of a game
+     * @param count The number of blocks in a game
+     */
     public void printStatistics(int score, LinkedHashMap<String, Integer> count) {
         try (PrintWriter pw =
                      new PrintWriter(new FileWriter("Statistics.txt"))) {
             storeScore(score);
-            storeCount(count);
+            storeNumBlocks(count);
             pw.println("Difficulty: " + difficulty);
             averageScore = calculateAverageScore(scoreList);
             pw.println("Average score per round: " + averageScore);
@@ -55,7 +90,7 @@ public class Statistics {
                 pw.println("Score: " + scoreList.get(i));
 
                 // prints out the number of blocks
-                countList.get(i).entrySet().forEach(entry -> pw.println(entry.getKey() + ": " + entry.getValue()));
+                numBlocksList.get(i).entrySet().forEach(entry -> pw.println(entry.getKey() + ": " + entry.getValue()));
                 pw.println("------------------------------------------");
             }
 
@@ -64,11 +99,11 @@ public class Statistics {
         }
     }
 
-    //public void resetScore(){
-        //count.replaceAll((k,v)->v=0 );
-    //}
-
-    //Calculate the average score
+    /**
+     * Calculate the average score across all games
+     * @param scoreList The list of scores of all games
+     * @return double Average score from the score list
+     */
     public double calculateAverageScore(ArrayList<Integer> scoreList) {
         return scoreList.stream()
                 .mapToDouble(d -> d)

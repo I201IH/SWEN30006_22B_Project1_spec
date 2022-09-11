@@ -7,9 +7,23 @@ import java.util.Arrays;
 
 class I extends TetrisPiece implements TetrisPieceFactory
 {
+  /**
+   * A unique id of a block
+   */
   private final int blockId = 0;
+  /**
+   * The name of a block
+   */
   private final String blockName = "I";
+
+  /**
+   * The location of a block
+   */
   private Location[][] r = new Location[4][4];
+
+  /**
+   * A tetris game
+   */
   private Tetris tetris;
 
   I(Tetris tetris, boolean canRotated)
