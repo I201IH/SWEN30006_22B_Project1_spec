@@ -90,7 +90,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     private boolean isAuto = false;
 
-    private String difficulty = "easy";
+    private String difficulty = "madness";
     private Statistics statistics;
 
     private int seed = 30006;
@@ -210,14 +210,8 @@ public class Tetris extends JFrame implements GGActListener {
             preview = test2;
         }
 
+        calculateNumBlocks(preview);
 
-
-        if (!Statistics.count.containsKey(preview.getClass().getSimpleName())) {
-            Statistics.count.put(preview.getClass().getSimpleName(), 1);
-        } else{
-            Statistics.count.put(preview.getClass().getSimpleName(),
-                    Statistics.count.get(preview.getClass().getSimpleName()) + 1);
-        }
         preview.display(gameGrid2, new Location(2, 1));
         blockPreview = preview;
 
@@ -230,6 +224,16 @@ public class Tetris extends JFrame implements GGActListener {
     void setCurrentTetrisBlock(Actor t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
+    }
+
+    private void calculateNumBlocks(TetrisPiece preview) {
+        String blockName = preview.getClass().getSimpleName();
+        if (!Statistics.count.containsKey(blockName)) {
+            Statistics.count.put(blockName, 1);
+        } else {
+            Statistics.count.put(blockName,
+                    Statistics.count.get(blockName) + 1);
+        }
     }
 
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
