@@ -41,10 +41,7 @@ class Q extends TetrisPiece implements TetrisPieceFactory{
 
         for (int i = 0; i < r.length; i++){
             blocks.add(new TetroBlock(blockId, r[i]));
-
-
         }
-
 
     }
 

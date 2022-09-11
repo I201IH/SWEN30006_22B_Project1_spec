@@ -47,20 +47,4 @@ class O extends TetrisPiece implements TetrisPieceFactory
   public TetrisPiece create() {
     return new O(tetris,canRotate);
   }
-
-  /*public String toString() {
-    return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
-  }
-  protected Tetris tetris;
-  private boolean isStarting = true;
-  private int rotId = 0;
-  private int nb;
-  protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
-  private Actor nextTetrisBlock = null;
-  private String autoBlockMove = "";
-  private int autoBlockIndex = 0;
-  public void setAutoBlockMove(String autoBlockMove) {
-    this.autoBlockMove = autoBlockMove;
-  }
-  */
 }

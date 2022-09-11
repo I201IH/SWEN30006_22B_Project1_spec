@@ -14,50 +14,7 @@ public class Easy extends Difficulty{
     public Easy(Tetris tetris) {
         super(tetris);
         this.tetris = tetris;
-        /*
-        factory = new RandomFactory(new TetrisPieceFactory[]{
-                new I(this.tetris),
-                new J(this.tetris),
-                new L(this.tetris),
-                new O(this.tetris),
-                new S(this.tetris),
-                new T(this.tetris),
-                new Z(this.tetris),
-        });
-
-         */
-
-
-        //super(gameCallback, properties);
     }
-
-
-    /*
-    protected RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
-            new I(tetris),
-            new J(tetris),
-            new L(tetris),
-            new O(tetris),
-            new S(tetris),
-            new T(tetris),
-            new Z(tetris),
-    });
-
-     */
-
-
-/*
-    protected RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
-            new I(tetris),
-            new J(tetris),
-            new L(tetris),
-            new O(tetris),
-            new S(tetris),
-            new T(tetris),
-            new Z(tetris),
-    });
-
- */
 
     public int setSpeed(int score){
         int slowDown = 5;

@@ -10,7 +10,6 @@ class L extends TetrisPiece implements TetrisPieceFactory
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];
   private final String blockName = "L";
-  //private boolean canRotated = true;
 
   L(Tetris tetris, boolean canRotated)
   {

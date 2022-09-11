@@ -18,12 +18,8 @@ public class Tetris extends JFrame implements GGActListener {
     private Random random = new Random(0);
     private LinkedHashMap<String, Integer> count = new LinkedHashMap<>();
     protected Difficulty diff = new Easy(this);
-    protected Easy easy;
-    protected Medium medium = new Medium(this);
-    protected Madness madness = new Madness(this);
-    private boolean canRotated = true;
-
-
+    private final int EASY_BOUND = 7;
+    private final int DIFF_BOUND = 10;
 
     private TetrisGameCallback gameCallback;
 
@@ -52,11 +48,6 @@ public class Tetris extends JFrame implements GGActListener {
             new P(this, diff.getCanRotate()),
             new Q(this, diff.getCanRotate()),
             new Plus(this, diff.getCanRotate())
-            //if (difficulty != "easy") {
-            //new P(this),
-            //new Q(this),
-            //new Plus(this)
-            //}
     });
 
     RandomFactory factoryDiff = new RandomFactory(new TetrisPieceFactory[]{
@@ -103,15 +94,12 @@ public class Tetris extends JFrame implements GGActListener {
         switch (difficulty){
             case ("easy"):
                 diff = new Easy(this);
-                //System.out.println("easy value is "+ diff.getCanRotate());
                 break;
             case("medium"):
                 diff = new Medium(this);
-                //System.out.println("medium value is "+ diff.getCanRotate());
                 break;
             case("madness"):
                 diff = new Madness(this);
-                //System.out.println("madness value is "+ diff.getCanRotate());
                 break;
         }
         return diff;
@@ -154,9 +142,6 @@ public class Tetris extends JFrame implements GGActListener {
 
         statistics =  new Statistics(score, difficulty, count);
         diff = selectDiff(difficulty);
-        easy = new Easy(this);
-        medium = new Medium(this);
-        madness = new Madness(this);
 
     }
 
@@ -178,38 +163,25 @@ public class Tetris extends JFrame implements GGActListener {
         int bound = 7;
 
         if (difficulty.equals("easy")){
-            bound = 7;
+            bound = EASY_BOUND;
             current = factory;
             current2 = factory2;
         }
         else{
-            bound = 10;
+            bound = DIFF_BOUND;
             current = factoryDiff;
             current2 = factoryDiff2;
         }
 
-        // Randomly select, but test 2 does not follow
-        //random in constructor=seed
-        //easy = new Easy(this);
-       // Actor currentPiece  = chooseFactory(difficulty).create(bound);
-
-
         Actor currentPiece = current.create(bound);
-        //System.out.println("Test Error " + chooseFactory(difficulty).getSeed());
-        //Actor currentPiece = factory.create(bound);
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
         }
-
-
         TetrisPiece preview = current2.create(bound);
-
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
             TetrisPiece test2 = current2.create(bound);
-            //System.out.println("factory 2 's rnd is " + current2.getSeed());
             preview = test2;
         }
-
         calculateNumBlocks(preview);
 
         preview.display(gameGrid2, new Location(2, 1));
@@ -290,42 +262,10 @@ public class Tetris extends JFrame implements GGActListener {
                 score++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
-                /*
-                // Set speed of tetrisBlocks
-                if (score > 10)
-                    slowDown = 4;
-                if (score > 20)
-                    slowDown = 3;
-                if (score > 30)
-                    slowDown = 2;
-                if (score > 40)
-                    slowDown = 1;
-                if (score > 50)
-                    slowDown = 0;
-
-                 */
                 slowDown = diff.setSpeed(score);
             }
         }
     }
-
-    /*
-    public int setSpeed(int score){
-        int slowDown = 5;
-        if (score > 10)
-            slowDown = 4;
-        if (score > 20)
-            slowDown = 3;
-        if (score > 30)
-            slowDown = 2;
-        if (score > 40)
-            slowDown = 1;
-        if (score > 50)
-            slowDown = 0;
-        return slowDown;
-    }
-
-     */
 
     // Show Score and Game Over
 

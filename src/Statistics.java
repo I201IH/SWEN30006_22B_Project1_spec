@@ -15,7 +15,6 @@ public class Statistics {
     private LinkedHashMap<String, Integer> count;
     private ArrayList<LinkedHashMap<String, Integer>> countList = new ArrayList<>();
 
-    //private ArrayList<Integer> list = new ArrayList<Integer>();
     //score, each piece time, average score, difficulty level
     // Tetris class
     public Statistics(int score, String diff, LinkedHashMap<String, Integer> count) {
@@ -71,17 +70,6 @@ public class Statistics {
 
     //Calculate the average score
     public double calculateAverageScore(ArrayList<Integer> scoreList) {
-        /* another way to calculate average score
-        System.out.println(scoreList);
-        int sum = 0;
-        for (Integer element : scoreList) {
-            sum += element;
-        }
-        double avg = sum / scoreList.size();
-        System.out.println(sum / scoreList.size());
-        return avg;
-
-         */
         return scoreList.stream()
                 .mapToDouble(d -> d)
                 .average()

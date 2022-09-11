@@ -13,38 +13,6 @@ public class Medium extends Difficulty{
     public boolean getCanRotate(){
         return canRotate;
     }
-    //create random piece
-    /*
-    protected RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
-            new I(tetris),
-            new J(tetris),
-            new L(tetris),
-            new O(tetris),
-            new S(tetris),
-            new T(tetris),
-            new Z(tetris),
-            new P(tetris),
-            new Q(tetris),
-            new Plus(tetris)
-    });
-
-     */
-
-    /*
-    protected RandomFactory factory2 = new RandomFactory(new TetrisPieceFactory[]{
-            new I(tetris),
-            new J(tetris),
-            new L(tetris),
-            new O(tetris),
-            new S(tetris),
-            new T(tetris),
-            new Z(tetris),
-            new P(tetris),
-            new Q(tetris),
-            new Plus(tetris)
-    });
-
-     */
 
     public int setSpeed(int score){
         int slowDown = (int) (5 * 0.8);

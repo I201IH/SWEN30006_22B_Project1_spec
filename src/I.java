@@ -11,7 +11,6 @@ class I extends TetrisPiece implements TetrisPieceFactory
   private final String blockName = "I";
   private Location[][] r = new Location[4][4];
   private Tetris tetris;
-  //private boolean canRotated = true;
 
   I(Tetris tetris, boolean canRotated)
   {

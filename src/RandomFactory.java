@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class RandomFactory{
-    private int seed = 0;
+    private final int seed = 30006;
     private int bound =0;
     TetrisPieceFactory[] factories;
-    Random r = new Random(30006);
+    Random r = new Random(seed);
 
     public RandomFactory(TetrisPieceFactory[] factories){
         this.factories = factories;
@@ -17,20 +17,10 @@ public class RandomFactory{
     public TetrisPiece create(int bound) {
         setBound(bound);
         int rnd = r.nextInt(bound);
-        //System.out.println("rnd is "+ rnd);
-        setSeed(rnd);
         return factories[rnd].create();
     }
 
     public void setBound(int bound){
         this.bound = bound;
-    }
-    //method help find error
-    public void setSeed(int seedTest){
-        seed = seedTest;
-    }
-    //method help find error
-    public int getSeed(){
-        return seed;
     }
 }
