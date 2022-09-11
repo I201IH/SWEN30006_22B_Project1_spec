@@ -14,9 +14,9 @@ public class Tetris extends JFrame implements GGActListener {
     private Actor currentBlock = null;  // Currently active block
     private Actor blockPreview = null;   // block in preview window
     private int score = 0;
-    private int slowDown = 5;
+    private int slowDown = 1;
     private Random random = new Random(0);
-    public static LinkedHashMap<String, Integer> count = new LinkedHashMap<>();
+    private LinkedHashMap<String, Integer> count = new LinkedHashMap<>();
     protected Difficulty diff = new Easy(this);
     protected Easy easy;
     protected Medium medium = new Medium(this);
@@ -148,9 +148,9 @@ public class Tetris extends JFrame implements GGActListener {
         // Do not lose keyboard focus when clicking this window
         gameGrid2.setFocusable(false);
         setTitle("SWEN30006 Tetris Madness");
-        score = 0;
         showScore(score);
-        slowDown = 5;
+
+        reset();
 
         statistics =  new Statistics(score, difficulty, count);
         diff = selectDiff(difficulty);
@@ -228,11 +228,11 @@ public class Tetris extends JFrame implements GGActListener {
 
     private void calculateNumBlocks(TetrisPiece preview) {
         String blockName = preview.getClass().getSimpleName();
-        if (!Statistics.count.containsKey(blockName)) {
-            Statistics.count.put(blockName, 1);
+        if (!count.containsKey(blockName)) {
+            count.put(blockName, 1);
         } else {
-            Statistics.count.put(blockName,
-                    Statistics.count.get(blockName) + 1);
+            count.put(blockName,
+                    count.get(blockName) + 1);
         }
     }
 
@@ -341,10 +341,26 @@ public class Tetris extends JFrame implements GGActListener {
     void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
-        statistics.printStatistics(score);
+        statistics.printStatistics(score, count);
         if (isAuto) {
             System.exit(0);
         }
+    }
+
+    private void reset() {
+        count = new LinkedHashMap<>();
+        count.put("I", 0);
+        count.put("J", 0);
+        count.put("L", 0);
+        count.put("O", 0);
+        count.put("S", 0);
+        count.put("T", 0);
+        count.put("Z", 0);
+        count.put("+", 0);
+        count.put("P", 0);
+        count.put("Q", 0);
+        score = 0;
+        slowDown = 5;
     }
 
     // Start a new game
@@ -361,10 +377,9 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();
-        score = 0;
         showScore(score);
-        slowDown = 5;
-        statistics.resetScore();
+        reset();
+        //statistics.resetScore();
     }
 
 
