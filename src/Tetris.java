@@ -58,31 +58,6 @@ public class Tetris extends JFrame implements GGActListener {
             new Plus(this, diff.getCanRotate())
     });
 
-    RandomFactory factoryDiff = new RandomFactory(new TetrisPieceFactory[]{
-            new I(this, diff.getCanRotate()),
-            new J(this, diff.getCanRotate()),
-            new L(this, diff.getCanRotate()),
-            new O(this, diff.getCanRotate()),
-            new S(this, diff.getCanRotate()),
-            new T(this, diff.getCanRotate()),
-            new Z(this, diff.getCanRotate()),
-            new P(this, diff.getCanRotate()),
-            new Q(this, diff.getCanRotate()),
-            new Plus(this, diff.getCanRotate())
-    });
-
-    RandomFactory factoryDiff2 = new RandomFactory(new TetrisPieceFactory[]{
-            new I(this, diff.getCanRotate()),
-            new J(this, diff.getCanRotate()),
-            new L(this, diff.getCanRotate()),
-            new O(this, diff.getCanRotate()),
-            new S(this, diff.getCanRotate()),
-            new T(this, diff.getCanRotate()),
-            new Z(this, diff.getCanRotate()),
-            new P(this, diff.getCanRotate()),
-            new Q(this, diff.getCanRotate()),
-            new Plus(this, diff.getCanRotate())
-    });
 
 
 
@@ -180,15 +155,13 @@ public class Tetris extends JFrame implements GGActListener {
         RandomFactory current2;
         int bound = 7;
 
+        current = factory;
+        current2 = factory2;
         if (difficulty.equals("easy")){
             bound = EASY_BOUND;
-            current = factory;
-            current2 = factory2;
         }
         else{
             bound = DIFF_BOUND;
-            current = factoryDiff;
-            current2 = factoryDiff2;
         }
 
         Actor currentPiece = current.create(bound);
