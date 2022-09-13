@@ -161,7 +161,7 @@ public class Tetris extends JFrame implements GGActListener {
      * Create a block and assign to a preview mode
      * @return current block
      */
-    Actor createRandomTetrisBlock() {
+    public Actor createRandomTetrisBlock() {
         if (blockPreview != null)
             blockPreview.removeSelf();
 
@@ -310,7 +310,7 @@ public class Tetris extends JFrame implements GGActListener {
     /**
      * When the game is over
      */
-    void gameOver() {
+    public void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
         statistics.printStatistics(score, numBlocks);
