@@ -213,7 +213,7 @@ public class Tetris extends JFrame implements GGActListener {
     /** Set current block
      * @param t current block
      */
-    void setCurrentTetrisBlock(Actor t) {
+    public void setCurrentTetrisBlock(Actor t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
     }
