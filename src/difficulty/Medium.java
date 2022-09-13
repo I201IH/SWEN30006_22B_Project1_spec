@@ -1,19 +1,28 @@
-package src;
+package src.difficulty;
 
 
-public class Medium extends Difficulty{
+import src.Tetris;
+
+public class Medium extends Difficulty {
 
     protected Tetris tetris;
     private final boolean canRotate = true;
-    public Medium(Tetris tetris) {
-        super(tetris);
-        this.tetris = tetris;
+    public Medium() {
     }
 
+    /** This is a getter to get the CanRotate Boolean value
+     *
+     * @return boolean This returns the canRotate value in the Medium class
+     */
     public boolean getCanRotate(){
         return canRotate;
     }
 
+    /** This method is used to set the speed based on the scores
+     *
+     * @param score this is the score of player gets in current round
+     * @return int This returns the modified speed after setSpeed method
+     */
     public int setSpeed(int score){
         int slowDown = (int) (5 * 0.8);
         if (score > 10)

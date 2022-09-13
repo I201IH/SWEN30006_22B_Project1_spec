@@ -1,6 +1,7 @@
-package src;
+package src.factory;
 
-import java.util.ArrayList;
+import src.piece.TetrisPiece;
+
 import java.util.Random;
 
 public class RandomFactory{

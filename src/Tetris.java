@@ -1,12 +1,17 @@
 package src;// Tetris.java
 
 import ch.aplu.jgamegrid.*;
+import src.difficulty.Difficulty;
+import src.difficulty.Easy;
+import src.difficulty.Madness;
+import src.difficulty.Medium;
+import src.factory.RandomFactory;
+import src.factory.TetrisPieceFactory;
+import src.piece.*;
 
-import java.security.Key;
 import java.util.*;
 import java.awt.event.KeyEvent;
 import java.awt.*;
-import java.util.List;
 import javax.swing.*;
 
 public class Tetris extends JFrame implements GGActListener {
@@ -17,7 +22,7 @@ public class Tetris extends JFrame implements GGActListener {
     private int slowDown = 5;
     private Random random = new Random(0);
     private LinkedHashMap<String, Integer> numBlocks = new LinkedHashMap<>();
-    protected Difficulty diff = new Easy(this);
+    protected Difficulty diff = new Easy();
     private final int EASY_BOUND = 7;
     private final int DIFF_BOUND = 10;
 
@@ -93,13 +98,13 @@ public class Tetris extends JFrame implements GGActListener {
     public Difficulty selectDiff(String difficulty){
         switch (difficulty){
             case ("easy"):
-                diff = new Easy(this);
+                diff = new Easy();
                 break;
             case("medium"):
-                diff = new Medium(this);
+                diff = new Medium();
                 break;
             case("madness"):
-                diff = new Madness(this);
+                diff = new Madness();
                 break;
         }
         return diff;

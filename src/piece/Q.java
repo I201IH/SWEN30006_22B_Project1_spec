@@ -1,8 +1,11 @@
-package src;
+package src.piece;
 
 import ch.aplu.jgamegrid.Location;
+import src.Tetris;
+import src.factory.TetrisPieceFactory;
+import src.TetroBlock;
 
-class Q extends TetrisPiece implements TetrisPieceFactory{
+public class Q extends TetrisPiece implements TetrisPieceFactory {
     private final int blockId = 6;
     private final String blockName = "Q";
     private Location[][] r = new Location[5][4];

@@ -1,9 +1,9 @@
 // I.java
-package src;
+package src.piece;
 import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import src.Tetris;
+import src.factory.TetrisPieceFactory;
+import src.TetroBlock;
 
 class I extends TetrisPiece implements TetrisPieceFactory
 {

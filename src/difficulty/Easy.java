@@ -1,11 +1,12 @@
-package src;
+package src.difficulty;
 
-import java.util.Properties;
+import src.factory.RandomFactory;
+import src.Tetris;
 
 /**
  * Represents level Easy
  */
-public class Easy extends Difficulty{
+public class Easy extends Difficulty {
     protected Tetris tetris;
     protected RandomFactory factory;
     private final boolean canRotate = true;
@@ -14,9 +15,7 @@ public class Easy extends Difficulty{
         return canRotate;
     }
 
-    public Easy(Tetris tetris) {
-        super(tetris);
-        this.tetris = tetris;
+    public Easy() {
     }
 
     public int setSpeed(int score){

@@ -1,6 +1,9 @@
-package src;
+package src.piece;
 
 import ch.aplu.jgamegrid.Location;
+import src.Tetris;
+import src.factory.TetrisPieceFactory;
+import src.TetroBlock;
 
 class P extends TetrisPiece implements TetrisPieceFactory
 {

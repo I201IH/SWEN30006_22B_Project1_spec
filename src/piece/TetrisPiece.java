@@ -1,8 +1,10 @@
-package src;
+package src.piece;
 
 import ch.aplu.jgamegrid.Actor;
 import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
+import src.Tetris;
+import src.TetroBlock;
 
 import java.util.ArrayList;
 
@@ -10,14 +12,7 @@ import java.util.ArrayList;
  * Represents a tetris piece as a parent class for all the other specific pieces
  */
 public abstract class TetrisPiece extends Actor {
-    /**
-     * A unique id of a block
-     */
-    private int blockId;
-    /**
-     * The name of a block
-     */
-    private String blockName;
+
     /**
      * Location of a block
      */
@@ -160,7 +155,7 @@ public abstract class TetrisPiece extends Actor {
     /**
      * Move the block left, right, drop and rotate the block
      */
-    void left()
+    public void left()
     {
         if (isStarting)
             return;
@@ -171,7 +166,7 @@ public abstract class TetrisPiece extends Actor {
     /**
      * Move the block right
      */
-    void right()
+    public void right()
     {
         if (isStarting)
             return;
@@ -182,7 +177,7 @@ public abstract class TetrisPiece extends Actor {
     /**
      * Rotate the block
      */
-    void rotate()
+    public void rotate()
     {
         if (isStarting)
             return;
@@ -234,7 +229,7 @@ public abstract class TetrisPiece extends Actor {
     /**
      * Drop the block
      */
-    void drop()
+    public void drop()
     {
         if (isStarting)
             return;

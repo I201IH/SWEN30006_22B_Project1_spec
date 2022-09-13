@@ -1,9 +1,9 @@
 // Z.java
-package src;
+package src.piece;
 import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import src.Tetris;
+import src.factory.TetrisPieceFactory;
+import src.TetroBlock;
 
 class Z extends TetrisPiece implements TetrisPieceFactory
 {
@@ -12,7 +12,7 @@ class Z extends TetrisPiece implements TetrisPieceFactory
   private final String blockName = "Z";
   private Tetris tetris;
 
-  Z(Tetris tetris, boolean canRotated)
+  public Z(Tetris tetris, boolean canRotated)
   {
     super(tetris, canRotated);
     this.tetris = tetris;

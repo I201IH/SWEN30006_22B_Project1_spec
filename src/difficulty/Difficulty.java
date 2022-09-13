@@ -1,4 +1,6 @@
-package src;
+package src.difficulty;
+
+import src.Tetris;
 
 /**
  * Represents the difficulty of a game
@@ -7,15 +9,13 @@ public abstract class Difficulty {
     /**
      * A tetris game
      */
-    private Tetris tetris;
 
 
     /**
      * Constructors to create object of class Difficulty
-     * @param tetris
+     * @param
      */
-    Difficulty (Tetris tetris){
-        this.tetris = tetris;
+    Difficulty (){
     }
 
     /**

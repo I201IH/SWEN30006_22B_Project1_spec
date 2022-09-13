@@ -1,20 +1,32 @@
-package src;
+package src.difficulty;
+
+import src.Tetris;
 
 import java.util.Random;
 
-public class Madness extends Difficulty{
+/** This Madness class
+ *
+ */
+public class Madness extends Difficulty {
     private final boolean canRotate = false;
     protected Tetris tetris;
 
-    public Madness(Tetris tetris) {
-        super(tetris);
-        this.tetris = tetris;
+    public Madness() {
     }
 
+    /** This is a getter to get the CanRotate Boolean value
+     *
+     * @return boolean This returns the canRotate value in the Madness class
+     */
     public boolean getCanRotate(){
         return canRotate;
     }
 
+    /** This method is used to set the speed based on the scores
+     *
+     * @param score this is the score of player gets in current round
+     * @return int This returns the modified speed after setSpeed method
+     */
     public int setSpeed(int score){
         int slowDown = (int) (5 * 0.5);
         if (score > 10)
