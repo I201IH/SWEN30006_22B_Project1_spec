@@ -16,7 +16,7 @@ import javax.swing.*;
 
 public class Tetris extends JFrame implements GGActListener {
 
-    private Actor currentBlock = null;  // Currently active block
+    private Actor currentBlock;  // Currently active block
     private Actor blockPreview = null;   // block in preview window
     private int score = 0;
     private int slowDown = 5;
@@ -28,7 +28,10 @@ public class Tetris extends JFrame implements GGActListener {
 
     private TetrisGameCallback gameCallback;
 
-
+    /**
+     * Factories to create tetris pieces for game
+     * difficulty change based on the bound
+     */
     private RandomFactory factory = new RandomFactory(new TetrisPieceFactory[]{
             new I(this, diff.getCanRotate()),
             new J(this, diff.getCanRotate()),
@@ -192,6 +195,10 @@ public class Tetris extends JFrame implements GGActListener {
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
         }
+        /*
+         To confirm get the same "random" pieces with test2
+         use another factory called current2
+         */
         TetrisPiece preview = current2.create(bound);
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
             TetrisPiece test2 = current2.create(bound);
