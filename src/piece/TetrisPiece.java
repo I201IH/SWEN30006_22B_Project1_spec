@@ -25,9 +25,6 @@ public abstract class TetrisPiece extends Actor {
      * Whether a block can rotate
      */
     protected boolean canRotate;
-    private boolean ptn = false;
-
-
     /**
      * Constructor to create an object of class TetrisPiece
      * @param tetris
@@ -142,7 +139,7 @@ public abstract class TetrisPiece extends Actor {
      * @param gg
      * @param location
      */
-    void display(GameGrid gg, Location location)
+    public void display(GameGrid gg, Location location)
     {
         for (TetroBlock a : blocks)
         {
