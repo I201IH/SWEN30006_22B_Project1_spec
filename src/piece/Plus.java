@@ -13,7 +13,7 @@ public class Plus extends TetrisPiece implements TetrisPieceFactory
     private Location[][] r = new Location[5][4];
     private Tetris tetris;
 
-    Plus (Tetris tetris, boolean canRotated)
+    public Plus(Tetris tetris, boolean canRotated)
     {
         super(tetris, canRotated);
         this.tetris = tetris;

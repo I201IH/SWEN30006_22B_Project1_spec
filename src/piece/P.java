@@ -5,14 +5,14 @@ import src.Tetris;
 import src.factory.TetrisPieceFactory;
 import src.TetroBlock;
 
-class P extends TetrisPiece implements TetrisPieceFactory
+public class P extends TetrisPiece implements TetrisPieceFactory
 {
     private final int blockId = 6;
     private Location[][] r = new Location[5][4];
     private final String blockName = "P";
     private Tetris tetris;
 
-    P(Tetris tetris, boolean canRotated)
+    public P(Tetris tetris, boolean canRotated)
     {
         super(tetris, canRotated);
         this.tetris = tetris;

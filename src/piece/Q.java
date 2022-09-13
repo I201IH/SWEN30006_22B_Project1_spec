@@ -11,7 +11,7 @@ public class Q extends TetrisPiece implements TetrisPieceFactory {
     private Location[][] r = new Location[5][4];
     private Tetris tetris;
 
-    Q (Tetris tetris, boolean canRotated){
+    public Q (Tetris tetris, boolean canRotated){
 
         super(tetris, canRotated);
         this.tetris = tetris;

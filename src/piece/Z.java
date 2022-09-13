@@ -5,7 +5,7 @@ import src.Tetris;
 import src.factory.TetrisPieceFactory;
 import src.TetroBlock;
 
-class Z extends TetrisPiece implements TetrisPieceFactory
+public class Z extends TetrisPiece implements TetrisPieceFactory
 {
   private final int blockId = 6;
   private Location[][] r = new Location[4][4];

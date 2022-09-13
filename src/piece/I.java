@@ -5,7 +5,7 @@ import src.Tetris;
 import src.factory.TetrisPieceFactory;
 import src.TetroBlock;
 
-class I extends TetrisPiece implements TetrisPieceFactory
+public class I extends TetrisPiece implements TetrisPieceFactory
 {
   /**
    * A unique id of a block
@@ -26,7 +26,7 @@ class I extends TetrisPiece implements TetrisPieceFactory
    */
   private Tetris tetris;
 
-  I(Tetris tetris, boolean canRotated)
+  public I(Tetris tetris, boolean canRotated)
   {
     super(tetris, canRotated);
     this.tetris = tetris;
