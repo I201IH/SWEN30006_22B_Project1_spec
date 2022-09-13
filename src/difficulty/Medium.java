@@ -1,14 +1,13 @@
 package src.difficulty;
 
-
 import src.Tetris;
 
+/**
+ * Represents level Medium
+ */
 public class Medium extends Difficulty {
-
-    protected Tetris tetris;
     private final boolean canRotate = true;
-    public Medium() {
-    }
+    public Medium() {}
 
     /** This is a getter to get the CanRotate Boolean value
      *

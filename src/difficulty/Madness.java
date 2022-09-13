@@ -4,15 +4,12 @@ import src.Tetris;
 
 import java.util.Random;
 
-/** This Madness class
- *
+/**
+ * Represents level Madness
  */
 public class Madness extends Difficulty {
     private final boolean canRotate = false;
-    protected Tetris tetris;
-
-    public Madness() {
-    }
+    public Madness() {}
 
     /** This is a getter to get the CanRotate Boolean value
      *

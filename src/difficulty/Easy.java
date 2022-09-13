@@ -7,16 +7,12 @@ import src.Tetris;
  * Represents level Easy
  */
 public class Easy extends Difficulty {
-    protected Tetris tetris;
-    protected RandomFactory factory;
     private final boolean canRotate = true;
-
     public boolean getCanRotate(){
         return canRotate;
     }
 
-    public Easy() {
-    }
+    public Easy() {}
 
     public int setSpeed(int score){
         int slowDown = 5;
@@ -32,10 +28,4 @@ public class Easy extends Difficulty {
             slowDown = 0;
         return slowDown;
     }
-
-
-    //change speed
-    //disable rotate function - make canRotate - false
-
-
 }

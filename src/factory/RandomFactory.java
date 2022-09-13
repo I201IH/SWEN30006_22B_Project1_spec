@@ -9,7 +9,7 @@ import java.util.Random;
  */
 public class RandomFactory{
     private final int seed = 30006;
-    private int bound =0;
+    private int bound = 0;
     TetrisPieceFactory[] factories;
     Random r = new Random(seed);
 

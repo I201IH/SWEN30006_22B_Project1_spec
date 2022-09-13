@@ -17,11 +17,11 @@ import javax.swing.*;
 public class Tetris extends JFrame implements GGActListener {
 
     private Actor currentBlock;  // Currently active block
-    private Actor blockPreview = null;   // block in preview window
+    private Actor blockPreview = null;   // Block in preview window
     private int score = 0;
     private int slowDown = 5;
     private Random random = new Random(0);
-    private LinkedHashMap<String, Integer> numBlocks = new LinkedHashMap<>();
+    private LinkedHashMap<String, Integer> numBlocks = new LinkedHashMap<>(); // Number of blocks in a game
     protected Difficulty diff = new Easy();
     private final int EASY_BOUND = 7;
     private final int DIFF_BOUND = 10;
@@ -58,13 +58,9 @@ public class Tetris extends JFrame implements GGActListener {
             new Plus(this, diff.getCanRotate())
     });
 
-
-
-
-
     private boolean isAuto = false;
 
-    private String difficulty = "madness";
+    private String difficulty;
     private Statistics statistics;
 
     private int seed = 30006;
@@ -168,10 +164,9 @@ public class Tetris extends JFrame implements GGActListener {
         if (isAuto) {
             ((TetrisPiece)currentPiece).setAutoBlockMove(currentBlockMove);
         }
-        /*
-         To confirm get the same "random" pieces with test2
-         use another factory called current2
-         */
+
+         // To confirm get the same "random" pieces with test2
+         // use another factory called current2
         TetrisPiece preview = current2.create(bound);
         while (!preview.getClass().getName().equals(currentPiece.getClass().getName())){
             TetrisPiece test2 = current2.create(bound);
@@ -339,7 +334,6 @@ public class Tetris extends JFrame implements GGActListener {
         reset();
     }
 
-
     /**
      * Different speed for manual and auto mode
      * @return speed
@@ -353,7 +347,6 @@ public class Tetris extends JFrame implements GGActListener {
         }
     }
 
-    
     private int getDelayTime() {
         if (isAuto) {
             return 200;
