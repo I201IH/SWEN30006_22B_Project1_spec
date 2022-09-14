@@ -11,14 +11,6 @@ import java.util.Map;
  */
 public class Statistics {
     /**
-     * Total score of a game
-     */
-    private int score = 0;
-    /**
-     * The round a game is in
-     */
-    private int round = 1;
-    /**
      * Store the average score across all games
      */
     private double averageScore = 0;
@@ -37,11 +29,9 @@ public class Statistics {
 
     /**
      * Constructor to create an object of class Statistics
-     * @param score
      * @param diff
      */
-    public Statistics(int score, String diff) {
-        this.score = score;
+    public Statistics(String diff) {
         this.difficulty = diff;
     }
 

@@ -45,10 +45,7 @@ public class Plus extends TetrisPiece implements TetrisPieceFactory
 
         for (int i = 0; i < r.length; i++)
             blocks.add(new TetroBlock(blockId, r[i]));
-
-
     }
-
 
     public String toString() {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}

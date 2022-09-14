@@ -103,6 +103,9 @@ public class Tetris extends JFrame implements GGActListener {
      * @param properties
      */
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
+        // set score to 0, slowdown to 5 and a new storage to compute number of blocks
+        reset();
+
         // Initialise value
         initWithProperties(properties);
         this.gameCallback = gameCallback;
@@ -117,16 +120,15 @@ public class Tetris extends JFrame implements GGActListener {
         currentBlock = createRandomTetrisBlock();
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
+        calculateNumBlocks((TetrisPiece) currentBlock);
 
         // Do not lose keyboard focus when clicking this window
         gameGrid2.setFocusable(false);
         setTitle("SWEN30006 Tetris Madness");
+
         showScore(score);
 
-        // set score to 0, slowdown to 5 and a new storage to compute number of blocks
-        reset();
-
-        statistics =  new Statistics(score, difficulty);
+        statistics =  new Statistics(difficulty);
         diff = selectDiff(difficulty);
 
     }
@@ -173,9 +175,6 @@ public class Tetris extends JFrame implements GGActListener {
             preview = test2;
         }
 
-        // calculate number of a specific block when it is created
-        calculateNumBlocks(preview);
-
         preview.display(gameGrid2, new Location(2, 1));
         blockPreview = preview;
 
@@ -191,6 +190,9 @@ public class Tetris extends JFrame implements GGActListener {
     public void setCurrentTetrisBlock(Actor t) {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
+        TetrisPiece piece = (TetrisPiece) currentBlock;
+        // calculate number of a specific block when it is created
+        calculateNumBlocks(piece);
     }
 
     /** Calculate number of blocks in display
@@ -198,6 +200,9 @@ public class Tetris extends JFrame implements GGActListener {
      */
     private void calculateNumBlocks(TetrisPiece preview) {
         String blockName = preview.getClass().getSimpleName();
+        if (blockName.equals("Plus")) {
+            blockName = "+";
+        }
         if (!numBlocks.containsKey(blockName)) {
             numBlocks.put(blockName, 1);
         } else {
@@ -319,6 +324,7 @@ public class Tetris extends JFrame implements GGActListener {
      */
     public void startBtnActionPerformed(java.awt.event.ActionEvent evt)
     {
+        reset();
         gameGrid1.doPause();
         gameGrid1.removeAllActors();
         gameGrid2.removeAllActors();
@@ -331,7 +337,6 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.doRun();
         gameGrid1.requestFocus();
         showScore(score);
-        reset();
     }
 
     /**
