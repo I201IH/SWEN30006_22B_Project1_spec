@@ -126,7 +126,7 @@ public class Tetris extends JFrame implements GGActListener {
         // set score to 0, slowdown to 5 and a new storage to compute number of blocks
         reset();
 
-        statistics =  new Statistics(score, difficulty, numBlocks);
+        statistics =  new Statistics(score, difficulty);
         diff = selectDiff(difficulty);
 
     }

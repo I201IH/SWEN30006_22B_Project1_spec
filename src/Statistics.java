@@ -31,10 +31,6 @@ public class Statistics {
      */
     private ArrayList<Integer> scoreList = new ArrayList<Integer>();
     /**
-     * The number of blocks in a game
-     */
-    private LinkedHashMap<String, Integer> numBlocks;
-    /**
      * Store all records of number of blocks in all games
      */
     private ArrayList<LinkedHashMap<String, Integer>> numBlocksList = new ArrayList<>();
@@ -43,12 +39,10 @@ public class Statistics {
      * Constructor to create an object of class Statistics
      * @param score
      * @param diff
-     * @param numBlocks
      */
-    public Statistics(int score, String diff, LinkedHashMap<String, Integer> numBlocks) {
+    public Statistics(int score, String diff) {
         this.score = score;
         this.difficulty = diff;
-        this.numBlocks = numBlocks;
     }
 
     /**
