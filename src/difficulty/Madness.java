@@ -47,6 +47,11 @@ public class Madness extends Difficulty {
         return slowDown;
     }
 
+    /**
+     * Set random speed for a block
+     * @param currentSpeed
+     * @return the random speed
+     */
     public int randomSpeed(int currentSpeed){
         Random r = new Random();
         int speed = (int) (r.nextInt(currentSpeed+1) + currentSpeed);

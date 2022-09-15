@@ -68,8 +68,13 @@ public class Statistics {
     public void printStatistics(int score, LinkedHashMap<String, Integer> count) {
         try (PrintWriter pw =
                      new PrintWriter(new FileWriter("Statistics.txt"))) {
+
+            // scores in each game
             storeScore(score);
+
+            // number of blocks in each game
             storeNumBlocks(count);
+
             pw.println("Difficulty: " + difficulty);
             averageScore = calculateAverageScore(scoreList);
             pw.println("Average score per round: " + averageScore);

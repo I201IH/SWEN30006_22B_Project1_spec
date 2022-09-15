@@ -15,12 +15,22 @@ import src.Tetris;
  */
 public class Easy extends Difficulty {
     private final boolean canRotate = true;
+
+    public Easy() {}
+
+    /** This is a getter to get the CanRotate Boolean value
+     *
+     * @return boolean This returns the canRotate value in the Madness class
+     */
     public boolean getCanRotate(){
         return canRotate;
     }
 
-    public Easy() {}
-
+    /** This method is used to set the speed based on the scores
+     *
+     * @param score this is the score of player gets in current round
+     * @return int This returns the modified speed after setSpeed method
+     */
     public int setSpeed(int score){
         int slowDown = 5;
         if (score > 10)

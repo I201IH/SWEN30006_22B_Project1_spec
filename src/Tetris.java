@@ -198,7 +198,7 @@ public class Tetris extends JFrame implements GGActListener {
         gameCallback.changeOfBlock(currentBlock);
         currentBlock = t;
         TetrisPiece piece = (TetrisPiece) currentBlock;
-        // calculate number of a specific block when it is created
+        // calculate number of a specific block when it is played
         calculateNumBlocks(piece);
     }
 
@@ -291,7 +291,6 @@ public class Tetris extends JFrame implements GGActListener {
                 scoreText.setText(score + " points");
             }
         });
-
     }
 
     /**
