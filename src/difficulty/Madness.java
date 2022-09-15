@@ -5,6 +5,13 @@ import src.Tetris;
 import java.util.Random;
 
 /**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
+/**
  * Represents level Madness
  */
 public class Madness extends Difficulty {
@@ -45,6 +52,4 @@ public class Madness extends Difficulty {
         int speed = (int) (r.nextInt(currentSpeed+1) + currentSpeed);
         return speed;
     }
-
-    //score and speed
 }

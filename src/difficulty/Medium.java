@@ -3,6 +3,13 @@ package src.difficulty;
 import src.Tetris;
 
 /**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
+/**
  * Represents level Medium
  */
 public class Medium extends Difficulty {
@@ -36,6 +43,4 @@ public class Medium extends Difficulty {
             slowDown = 0;
         return slowDown;
     }
-
-
 }

@@ -5,6 +5,12 @@ import src.Tetris;
 import src.factory.TetrisPieceFactory;
 import src.TetroBlock;
 
+/**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
 
 public class Plus extends TetrisPiece implements TetrisPieceFactory
 {
@@ -42,18 +48,15 @@ public class Plus extends TetrisPiece implements TetrisPieceFactory
         r[3][3] = new Location(new Location(0, -1));
         r[4][3] = new Location(new Location(1, 0));
 
-
         for (int i = 0; i < r.length; i++)
             blocks.add(new TetroBlock(blockId, r[i]));
     }
 
     public String toString() {
         return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
+
     @Override
     public TetrisPiece create() {
         return new Plus(tetris,canRotate);
     }
-
-
-
 }

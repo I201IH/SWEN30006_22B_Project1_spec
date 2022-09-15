@@ -3,14 +3,16 @@ package src.difficulty;
 import src.Tetris;
 
 /**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
+/**
  * Represents the difficulty of a game
  */
 public abstract class Difficulty {
-    /**
-     * A tetris game
-     */
-
-
     /**
      * Constructors to create object of class Difficulty
      * @param
@@ -28,5 +30,4 @@ public abstract class Difficulty {
      * Determines if the blocks can rotate
      */
     public abstract boolean getCanRotate();
-
 }

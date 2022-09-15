@@ -14,6 +14,13 @@ import java.awt.event.KeyEvent;
 import java.awt.*;
 import javax.swing.*;
 
+/**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
 public class Tetris extends JFrame implements GGActListener {
 
     private Actor currentBlock;  // Currently active block

@@ -5,6 +5,13 @@ import src.piece.TetrisPiece;
 import java.util.Random;
 
 /**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
+/**
  * This class creates tetrisPiece randomly based on difficulty, using factory pattern
  */
 public class RandomFactory{

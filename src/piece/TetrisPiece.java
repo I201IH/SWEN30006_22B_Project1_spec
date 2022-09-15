@@ -9,6 +9,13 @@ import src.TetroBlock;
 import java.util.ArrayList;
 
 /**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
+/**
  * Represents a tetris piece as a parent class for all the other specific pieces
  */
 public abstract class TetrisPiece extends Actor {

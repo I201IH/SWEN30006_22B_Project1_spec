@@ -5,6 +5,13 @@ import src.Tetris;
 import src.factory.TetrisPieceFactory;
 import src.TetroBlock;
 
+/**
+ * Workshop 4 Friday 9:00, Team 12
+ * Yi Wei 1166107
+ * Thanh Nguyen Pham 1166068
+ * Ian Han 1180762
+ */
+
 public class Z extends TetrisPiece implements TetrisPieceFactory
 {
   private final int blockId = 6;
@@ -42,7 +49,6 @@ public class Z extends TetrisPiece implements TetrisPieceFactory
   }
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;}
-
 
   @Override
   public TetrisPiece create() {
